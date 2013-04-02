@@ -20,6 +20,8 @@ gem 'libv8', '~> 3.11.8'
 gem 'less-rails'
 gem 'sass-rails',   '~> 4.0.0.beta1'
 gem 'draper'
+gem 'omniauth'
+gem 'omniauth-github'
 
 group :assets do
     gem 'coffee-rails', '~> 4.0.0.beta1'
