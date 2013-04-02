@@ -71,10 +71,18 @@ describe User do
         FactoryGirl.build(:user, provider: 'facebook').should_not be_valid
     end
 
-    it "gets the right user" do
-        auth = set_omniauth(email: 'user@example.com')
+    describe "finds or creates" do
+        before :each do
+            @auth = set_omniauth()
+            @user = User.find_or_create_github_oauth(@auth)
+        end
 
-        user = User.find_or_create_github_oauth(auth)
-        user.email.shoud == 'user@example.com'
+        it "and return a valid instance" do
+            @user.instance_of? User
+        end
+
+        it "and return the right user" do
+            @user.email.should == @auth.info.email
+        end
     end
 end
