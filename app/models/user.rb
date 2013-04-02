@@ -1,3 +1,3 @@
 class User < ActiveRecord::Base
-    devise :database_authenticatable, :rememberable, :trackable, :omniauthable, :lockable, :timeoutable
+    devise :omniauthable, :rememberable, :trackable, :lockable, :timeoutable
 end
