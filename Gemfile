@@ -4,7 +4,6 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.0.beta1'
 
-gem 'sqlite3'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.0.1'
@@ -37,6 +36,7 @@ group :development do
 end
 
 group :development, :test do
+    gem 'sqlite3'
     gem 'rspec-rails'
     gem 'factory_girl_rails'
 end
