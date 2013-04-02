@@ -1,4 +1,7 @@
 require 'spec_helper'
 
-describe OmniauthCallbacksController do
+describe Users::OmniauthCallbacksController do
+    it "gets the right user" do
+
+    end
 end

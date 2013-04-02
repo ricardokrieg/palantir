@@ -48,4 +48,11 @@ describe User do
     it "rejects any provider that is not github" do
         FactoryGirl.build(:user, provider: 'facebook').should_not be_valid
     end
+
+    it "gets the right user" do
+        auth = set_omniauth(email: 'user@example.com')
+
+        user = User.find_or_create_github_oauth(auth)
+        user.email.shoud == 'user@example.com'
+    end
 end
