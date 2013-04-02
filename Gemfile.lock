@@ -82,6 +82,7 @@ GEM
     columnize (0.3.6)
     commonjs (0.2.6)
     daemons (1.1.9)
+    database_cleaner (0.9.1)
     debugger (1.5.0)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
@@ -303,6 +304,7 @@ DEPENDENCIES
   capistrano
   capybara
   coffee-rails (~> 4.0.0.beta1)
+  database_cleaner
   debugger
   devise!
   draper
