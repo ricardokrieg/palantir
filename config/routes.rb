@@ -1,5 +1,7 @@
 Palantir::Application.routes.draw do
-    root to: 'pages#home'
+    root to: 'developments#index'
+
+    resources :developments, only: [:new, :create]
 
     devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
 

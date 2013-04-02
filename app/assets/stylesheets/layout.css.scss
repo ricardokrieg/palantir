@@ -1,0 +1,18 @@
+.header {
+    background: #667981;
+    height: 100px;
+
+    .container {
+        .navbar {
+            padding-top: 20px;
+
+            i {
+                margin-right: 40px;
+            }
+
+            .brand {
+                border: none;
+            }
+        }
+    }
+}

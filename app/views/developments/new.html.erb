@@ -1,0 +1,5 @@
+<%= simple_form_for @development do |f| %>
+    <%= f.association :user, as: :string, label: false, placeholder: 'User', input_html: {class: 'input-xxlarge'} %>
+    <%= f.association :site, as: :string, label: false, placeholder: 'Site', input_html: {class: 'input-xxlarge'} %>
+    <%= f.association :category, as: :select, collection: Category.all, label: false, input_html: {class: 'input-xxlarge'} %>
+<% end %>
