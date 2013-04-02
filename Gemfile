@@ -21,6 +21,7 @@ gem 'sass-rails',   '~> 4.0.0.beta1'
 gem 'draper'
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'github_api'
 
 group :assets do
     gem 'coffee-rails', '~> 4.0.0.beta1'
