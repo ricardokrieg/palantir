@@ -12,6 +12,6 @@
 class Site < ActiveRecord::Base
     has_many :developments
 
+    validates :name, presence: true, uniqueness: {scope: [:url]}
     validates :url, presence: true
-    validates :name, presence: true
 end

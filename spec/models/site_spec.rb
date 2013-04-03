@@ -16,11 +16,20 @@ describe Site do
         FactoryGirl.create(:site).should be_valid
     end
 
-    it "is invalid without a url" do
-        FactoryGirl.build(:site, url: nil).should_not be_valid
+    describe "is invalid without a" do
+        it "url" do
+            FactoryGirl.build(:site, url: nil).should_not be_valid
+        end
+
+        it "name" do
+            FactoryGirl.build(:site, name: nil).should_not be_valid
+        end
     end
 
-    it "is invalid without a name" do
-        FactoryGirl.build(:site, name: nil).should_not be_valid
+    describe "disallow duplicates for" do
+        it "same name and url" do
+            @site = FactoryGirl.create(:site)
+            FactoryGirl.build(:site, name: @site.name, url: @site.url).should_not be_valid
+        end
     end
 end
