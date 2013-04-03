@@ -24,7 +24,6 @@ describe Development do
     end
 
     describe "is invalid" do
-
         it "without a user" do
             FactoryGirl.build(:development, user_id: nil).should_not be_valid
         end
