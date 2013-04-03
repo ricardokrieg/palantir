@@ -16,8 +16,6 @@ class Development < ActiveRecord::Base
     belongs_to :category
     has_many :changes
 
-    validates :user_id, presence: true, uniqueness: {scope: [:site_id, :category_id]}
-    validates :site_id, presence: true
-    validates :category_id, presence: true
-    validates_associated :user, :site, :category
+    validates :user_id, uniqueness: {scope: [:site_id, :category_id]}
+    validates :site, :user, :category, presence: true
 end
