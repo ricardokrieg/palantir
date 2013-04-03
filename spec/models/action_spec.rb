@@ -19,7 +19,7 @@ describe Action do
         FactoryGirl.build(:action, name: nil).should_not be_valid
     end
 
-    it "is invalid with duplicate name" do
+    it "disallows duplicates for name" do
         action = FactoryGirl.create(:action)
 
         FactoryGirl.build(:action, name: action.name).should_not be_valid
