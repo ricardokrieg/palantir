@@ -18,4 +18,6 @@ class Development < ActiveRecord::Base
 
     validates :user_id, uniqueness: {scope: [:site_id, :category_id]}
     validates :site, :user, :category, presence: true
+
+    accepts_nested_attributes_for :user, :site
 end

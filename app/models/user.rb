@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
     validates :uid, presence: true, uniqueness: true
     validates :provider, presence: true, inclusion: {in: ['github']}
 
+    before_validation :set_fake_auth, on: :create
+
     def self.find_or_create_github_oauth(auth)
         user = User.where(provider: auth.provider, uid: auth.uid).first
 
@@ -39,5 +41,11 @@ class User < ActiveRecord::Base
         end
 
         user
+    end
+
+    def set_fake_auth
+        self.provider ||= 'github'
+        self.uid ||= "uid-#{username}"
+        self.email ||= "email-#{username}"
     end
 end

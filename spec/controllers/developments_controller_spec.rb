@@ -4,7 +4,7 @@ describe DevelopmentsController do
     before do
         FactoryGirl.create(:user)
         FactoryGirl.create(:site)
-        FactoryGirl.create(:category)
+        @category = FactoryGirl.create(:category)
     end
 
     describe "GET :index" do
@@ -38,26 +38,47 @@ describe DevelopmentsController do
 
     describe "POST :create" do
         before do
-            @params_development = {user: {username: 'ricardokrieg'}, site: {name: 'Palantir', url: 'palantir.com'}, category_id: 1}
-            post :create, @params_development
+            @params_development = {development: {user_attributes: FactoryGirl.attributes_for(:user), site_attributes: FactoryGirl.attributes_for(:site), category_id: @category.id}}
         end
 
-        it "assigns a user with same username as passed" do
-            assigns(:user).username == @params_development[:user][:username]
-        end
+        context "assings" do
+            before do
+                post :create, @params_development
+            end
 
-        it "assigns a site with same name as passed" do
-            assigns(:site).name == @params_development[:site][:name]
-        end
+            it "a user with same username as passed" do
+                assigns(:user).username == @params_development[:development][:user_attributes][:username]
+            end
 
-        it "assigns a site with same url as passed" do
-            assigns(:site).url == @params_development[:site][:url]
+            it "a site with same name as passed" do
+                assigns(:site).name == @params_development[:development][:site_attributes][:name]
+            end
         end
 
         context "with valid attributes" do
+            it "creates a new development" do
+                expect {
+                    post :create, @params_development
+                }.to change(Development, :count).by(1)
+            end
+
+            it "redirects to development's site" do
+                post :create, @params_development
+                response.should redirect_to Development.last.site
+            end
         end
 
         context "with invalid attributes" do
+            it "does not save the new development" do
+                expect {
+                    post :create, @params_development.merge(development: {})
+                }.to_not change(Development, :count)
+            end
+
+            it "re-renders the new method" do
+                post :create, @params_development.merge(development: {})
+                response.should render_template :new
+            end
         end
     end
 end

@@ -1,7 +1,9 @@
 Palantir::Application.routes.draw do
+  get "sites/show"
     root to: 'developments#index'
 
     resources :developments, only: [:new, :create]
+    resources :sites, only: [:show]
 
     devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
 
