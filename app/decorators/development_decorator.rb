@@ -1,11 +1,11 @@
 class DevelopmentDecorator < Draper::Decorator
     delegate_all
 
-    def username
+    def user
         model.user.username
     end
 
-    def sitename
+    def site
         model.site.name
     end
 end

@@ -1,4 +1,6 @@
 class DevelopmentsController < ApplicationController
+    before_filter :decorate_all, only: [:index]
+
     def index
         @developments = Development.all
     end
