@@ -27,6 +27,10 @@ describe DevelopmentsController do
         it "renders the :index template" do
             response.should render_template :index
         end
+
+        it "decorates the array" do
+            assigns(:developments).should be_decorated
+        end
     end
 
     describe "GET :new" do
